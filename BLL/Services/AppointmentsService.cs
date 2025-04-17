@@ -47,6 +47,42 @@ namespace BLL.Services
             }
         }
 
+        public async Task<IEnumerable<AppointmentDto>> GetClientsAppointmentsAsync(int clientId)
+        {
+            try
+            {
+                var appointments = await _appointmentsRepository.GetAll();
+                if (appointments == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+
+                var filteredAppointments = appointments.Where(x => x.ClientId == clientId);
+                return filteredAppointments == null
+                    ? throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest)
+                    : _mapper.Map<IEnumerable<AppointmentDto>>(filteredAppointments);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting client's appointments", ex);
+            }
+        }
+
+        public async Task<IEnumerable<AppointmentDto>> GetSpecialistsAppointmentsAsync(int specialistId)
+        {
+            try
+            {
+                var appointments = await _appointmentsRepository.GetAll();
+                if (appointments == null) throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest);
+
+                var filteredAppointments = appointments.Where(x => x.SpecialistId == specialistId);
+                return filteredAppointments == null
+                    ? throw new HttpException(Errors.ItemNotFound, HttpStatusCode.BadRequest)
+                    : _mapper.Map<IEnumerable<AppointmentDto>>(filteredAppointments);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting specialist's appointments", ex);
+            }
+        }
+
         public async Task AddAppointmentAsync(AppointmentDto appointment)
         {
             try

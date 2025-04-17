@@ -28,6 +28,18 @@ namespace TheraFlow_WebAPI.Controllers
             return appointment == null ? NotFound() : Ok(appointment);
         }
 
+        [HttpGet("client/{id}")]
+        public async Task<IEnumerable<AppointmentDto>> GetClientsAppointments(int id)
+        {
+            return await _service.GetClientsAppointmentsAsync(id);
+        }
+
+        [HttpGet("specialist/{id}")]
+        public async Task<IEnumerable<AppointmentDto>> GetSpecialistsAppointments(int id)
+        {
+            return await _service.GetSpecialistsAppointmentsAsync(id);
+        }
+
         [HttpPost]
         public async Task<ActionResult<AppointmentDto>> PostAppointment([FromForm] AppointmentDto appointment)
         {
