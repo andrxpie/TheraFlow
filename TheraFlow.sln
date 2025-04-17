@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheraFlow WebAPI", "WebAPI\TheraFlow WebAPI.csproj", "{847D4417-53E9-4547-B559-DA2ECB9D31E3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CEE0A3A3-0459-4400-AFAD-7CBCFE2961B6} = {CEE0A3A3-0459-4400-AFAD-7CBCFE2961B6}
+		{EF870F75-AF8D-47B9-9B45-31E9AF2E3038} = {EF870F75-AF8D-47B9-9B45-31E9AF2E3038}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{CEE0A3A3-0459-4400-AFAD-7CBCFE2961B6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EF870F75-AF8D-47B9-9B45-31E9AF2E3038} = {EF870F75-AF8D-47B9-9B45-31E9AF2E3038}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{EF870F75-AF8D-47B9-9B45-31E9AF2E3038}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{847D4417-53E9-4547-B559-DA2ECB9D31E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{847D4417-53E9-4547-B559-DA2ECB9D31E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{847D4417-53E9-4547-B559-DA2ECB9D31E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{847D4417-53E9-4547-B559-DA2ECB9D31E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEE0A3A3-0459-4400-AFAD-7CBCFE2961B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEE0A3A3-0459-4400-AFAD-7CBCFE2961B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEE0A3A3-0459-4400-AFAD-7CBCFE2961B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEE0A3A3-0459-4400-AFAD-7CBCFE2961B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF870F75-AF8D-47B9-9B45-31E9AF2E3038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF870F75-AF8D-47B9-9B45-31E9AF2E3038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF870F75-AF8D-47B9-9B45-31E9AF2E3038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF870F75-AF8D-47B9-9B45-31E9AF2E3038}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98CAFC9C-33B0-4178-8EDF-A8E11B5E353C}
+	EndGlobalSection
+EndGlobal
