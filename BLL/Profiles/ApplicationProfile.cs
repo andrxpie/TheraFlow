@@ -11,6 +11,7 @@ namespace BLL.Profiles
             CreateMap<ClientDto, Client>().ReverseMap();
             CreateMap<SpecialistDto, Specialist>().ReverseMap();
             CreateMap<AppointmentDto, Appointment>().ReverseMap();
+            CreateMap<ConsultationNoteDto, ConsultationNote>().ReverseMap();
         }
     }
 }

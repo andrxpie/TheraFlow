@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(TheraFlowDbContext))]
-    [Migration("20250409175806_init")]
+    [Migration("20250417224647_init")]
     partial class init
     {
         /// <inheritdoc />
