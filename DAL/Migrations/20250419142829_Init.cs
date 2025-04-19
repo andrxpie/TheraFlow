@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -119,7 +119,9 @@ namespace DAL.Migrations
                 values: new object[,]
                 {
                     { 1, new DateTime(1990, 5, 12, 0, 0, 0, 0, DateTimeKind.Utc), "ivan@example.com", "Іван Іванов", "1234567890" },
-                    { 2, new DateTime(1995, 8, 22, 0, 0, 0, 0, DateTimeKind.Utc), "maria@example.com", "Марія Коваль", "0987654321" }
+                    { 2, new DateTime(1995, 8, 22, 0, 0, 0, 0, DateTimeKind.Utc), "maria@example.com", "Марія Коваль", "0987654321" },
+                    { 3, new DateTime(1988, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc), "oksana@example.com", "Оксана Петренко", "0970011223" },
+                    { 4, new DateTime(1992, 12, 17, 0, 0, 0, 0, DateTimeKind.Utc), "dmytro@example.com", "Дмитро Савчук", "0934567890" }
                 });
 
             migrationBuilder.InsertData(
@@ -128,7 +130,8 @@ namespace DAL.Migrations
                 values: new object[,]
                 {
                     { 1, "olena@theraflow.com", "Олена Психолог", "Когнітивно-поведінкова терапія" },
-                    { 2, "andrii@theraflow.com", "Андрій Терапевт", "Гештальт-терапія" }
+                    { 2, "andrii@theraflow.com", "Андрій Терапевт", "Гештальт-терапія" },
+                    { 3, "svitlana@theraflow.com", "Світлана Консультант", "Психоаналітична терапія" }
                 });
 
             migrationBuilder.InsertData(
@@ -137,7 +140,9 @@ namespace DAL.Migrations
                 values: new object[,]
                 {
                     { 1, new DateTime(2025, 4, 10, 10, 30, 0, 0, DateTimeKind.Utc), 1, 1 },
-                    { 2, new DateTime(2025, 4, 11, 14, 30, 0, 0, DateTimeKind.Utc), 2, 2 }
+                    { 2, new DateTime(2025, 4, 11, 14, 30, 0, 0, DateTimeKind.Utc), 2, 2 },
+                    { 3, new DateTime(2025, 4, 12, 9, 30, 0, 0, DateTimeKind.Utc), 3, 3 },
+                    { 4, new DateTime(2025, 4, 13, 13, 45, 0, 0, DateTimeKind.Utc), 4, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -146,7 +151,9 @@ namespace DAL.Migrations
                 values: new object[,]
                 {
                     { 1, new DateTime(2025, 4, 10, 12, 0, 0, 0, DateTimeKind.Utc), 1, new DateTime(2025, 4, 10, 10, 0, 0, 0, DateTimeKind.Utc) },
-                    { 2, new DateTime(2025, 4, 11, 16, 0, 0, 0, DateTimeKind.Utc), 2, new DateTime(2025, 4, 11, 14, 0, 0, 0, DateTimeKind.Utc) }
+                    { 2, new DateTime(2025, 4, 11, 16, 0, 0, 0, DateTimeKind.Utc), 2, new DateTime(2025, 4, 11, 14, 0, 0, 0, DateTimeKind.Utc) },
+                    { 3, new DateTime(2025, 4, 12, 11, 0, 0, 0, DateTimeKind.Utc), 3, new DateTime(2025, 4, 12, 9, 0, 0, 0, DateTimeKind.Utc) },
+                    { 4, new DateTime(2025, 4, 13, 15, 0, 0, 0, DateTimeKind.Utc), 1, new DateTime(2025, 4, 13, 13, 0, 0, 0, DateTimeKind.Utc) }
                 });
 
             migrationBuilder.InsertData(
@@ -155,7 +162,9 @@ namespace DAL.Migrations
                 values: new object[,]
                 {
                     { 1, 1, "Обговорили тривожність та техніки заземлення." },
-                    { 2, 2, "Перший сеанс. Уточнено цілі терапії." }
+                    { 2, 2, "Перший сеанс. Уточнено цілі терапії." },
+                    { 3, 3, "Проведено глибоке опитування минулих травматичних подій." },
+                    { 4, 4, "Обговорено тривалість та очікування від терапії." }
                 });
 
             migrationBuilder.CreateIndex(

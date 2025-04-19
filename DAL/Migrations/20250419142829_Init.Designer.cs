@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(TheraFlowDbContext))]
-    [Migration("20250417224647_init")]
-    partial class init
+    [Migration("20250419142829_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,6 +64,20 @@ namespace DAL.Migrations
                             AppointmentDate = new DateTime(2025, 4, 11, 14, 30, 0, 0, DateTimeKind.Utc),
                             ClientId = 2,
                             SpecialistId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AppointmentDate = new DateTime(2025, 4, 12, 9, 30, 0, 0, DateTimeKind.Utc),
+                            ClientId = 3,
+                            SpecialistId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AppointmentDate = new DateTime(2025, 4, 13, 13, 45, 0, 0, DateTimeKind.Utc),
+                            ClientId = 4,
+                            SpecialistId = 1
                         });
                 });
 
@@ -110,6 +124,22 @@ namespace DAL.Migrations
                             Email = "maria@example.com",
                             FullName = "Марія Коваль",
                             Phone = "0987654321"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DateOfBirth = new DateTime(1988, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "oksana@example.com",
+                            FullName = "Оксана Петренко",
+                            Phone = "0970011223"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DateOfBirth = new DateTime(1992, 12, 17, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "dmytro@example.com",
+                            FullName = "Дмитро Савчук",
+                            Phone = "0934567890"
                         });
                 });
 
@@ -147,6 +177,18 @@ namespace DAL.Migrations
                             Id = 2,
                             AppointmentId = 2,
                             Notes = "Перший сеанс. Уточнено цілі терапії."
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AppointmentId = 3,
+                            Notes = "Проведено глибоке опитування минулих травматичних подій."
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AppointmentId = 4,
+                            Notes = "Обговорено тривалість та очікування від терапії."
                         });
                 });
 
@@ -187,6 +229,20 @@ namespace DAL.Migrations
                             EndTime = new DateTime(2025, 4, 11, 16, 0, 0, 0, DateTimeKind.Utc),
                             SpecialistId = 2,
                             StartTime = new DateTime(2025, 4, 11, 14, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            EndTime = new DateTime(2025, 4, 12, 11, 0, 0, 0, DateTimeKind.Utc),
+                            SpecialistId = 3,
+                            StartTime = new DateTime(2025, 4, 12, 9, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            EndTime = new DateTime(2025, 4, 13, 15, 0, 0, 0, DateTimeKind.Utc),
+                            SpecialistId = 1,
+                            StartTime = new DateTime(2025, 4, 13, 13, 0, 0, 0, DateTimeKind.Utc)
                         });
                 });
 
@@ -228,6 +284,13 @@ namespace DAL.Migrations
                             Email = "andrii@theraflow.com",
                             FullName = "Андрій Терапевт",
                             Specialty = "Гештальт-терапія"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "svitlana@theraflow.com",
+                            FullName = "Світлана Консультант",
+                            Specialty = "Психоаналітична терапія"
                         });
                 });
 
