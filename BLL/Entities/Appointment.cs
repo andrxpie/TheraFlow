@@ -11,5 +11,4 @@
         public Specialist Specialist { get; set; } = null!;
         public ConsultationNote? Note { get; set; }
     }
-
 }
