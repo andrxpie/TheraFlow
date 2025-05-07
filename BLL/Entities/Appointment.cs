@@ -3,12 +3,11 @@
     public class Appointment
     {
         public int Id { get; set; }
-        public int ClientId { get; set; }
-        public int SpecialistId { get; set; }
+        public string ClientId { get; set; }
+        public User Client { get; set; } = null!;
+        public string SpecialistId { get; set; }
+        public User Specialist { get; set; } = null!;
         public DateTime AppointmentDate { get; set; }
-
-        public Client Client { get; set; } = null!;
-        public Specialist Specialist { get; set; } = null!;
         public ConsultationNote? Note { get; set; }
     }
 }

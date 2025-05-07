@@ -1,6 +1,8 @@
 using BLL;
+using BLL.Entities;
 using DAL;
 using DAL.Data.Database;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI
@@ -20,6 +22,10 @@ namespace WebAPI
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<TheraFlowDbContext>()
+                .AddDefaultTokenProviders();
 
             var app = builder.Build();
 

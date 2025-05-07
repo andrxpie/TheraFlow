@@ -47,7 +47,7 @@ namespace BLL.Services
             }
         }
 
-        public async Task<IEnumerable<AppointmentDto>> GetClientsAppointmentsAsync(int clientId)
+        public async Task<IEnumerable<AppointmentDto>> GetClientsAppointmentsAsync(string clientId)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace BLL.Services
             }
         }
 
-        public async Task<IEnumerable<AppointmentDto>> GetSpecialistsAppointmentsAsync(int specialistId)
+        public async Task<IEnumerable<AppointmentDto>> GetSpecialistsAppointmentsAsync(string specialistId)
         {
             try
             {

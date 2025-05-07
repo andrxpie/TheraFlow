@@ -29,13 +29,13 @@ namespace TheraFlow_WebAPI.Controllers
         }
 
         [HttpGet("client/{id}")]
-        public async Task<IEnumerable<AppointmentDto>> GetClientsAppointments(int id)
+        public async Task<IEnumerable<AppointmentDto>> GetClientsAppointments(string id)
         {
             return await _service.GetClientsAppointmentsAsync(id);
         }
 
         [HttpGet("specialist/{id}")]
-        public async Task<IEnumerable<AppointmentDto>> GetSpecialistsAppointments(int id)
+        public async Task<IEnumerable<AppointmentDto>> GetSpecialistsAppointments(string id)
         {
             return await _service.GetSpecialistsAppointmentsAsync(id);
         }

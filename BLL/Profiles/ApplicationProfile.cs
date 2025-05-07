@@ -8,11 +8,11 @@ namespace BLL.Profiles
     {
         public ApplicationProfile()
         {
-            CreateMap<ClientDto, Client>().ReverseMap();
-            CreateMap<SpecialistDto, Specialist>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, AddUserDto>().ReverseMap();
+            CreateMap<Speciality, SpecialityDto>().ReverseMap();
             CreateMap<AppointmentDto, Appointment>().ReverseMap();
             CreateMap<ConsultationNoteDto, ConsultationNote>().ReverseMap();
-            CreateMap<ScheduleDto, Schedule>().ReverseMap();
         }
     }
 }

@@ -18,11 +18,9 @@ namespace BLL
 
         public static void AddCustomServices(this IServiceCollection services)
         {
-            services.AddScoped<IClientService, ClientService>();
-            services.AddScoped<ISpecialistService, SpecialistService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAppointmentsService, AppointmentsService>();
             services.AddScoped<IConsultationNotesService, ConsultationNotesService>();
-            services.AddScoped<IScheduleService, ScheduleService>();
         }
     }
 }

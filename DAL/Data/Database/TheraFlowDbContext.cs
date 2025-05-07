@@ -1,4 +1,5 @@
 ﻿using BLL.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Data.Database
@@ -8,15 +9,17 @@ namespace DAL.Data.Database
         public TheraFlowDbContext(DbContextOptions<TheraFlowDbContext> options)
             : base(options) { }
 
-        public DbSet<Client> Clients => Set<Client>();
-        public DbSet<Specialist> Specialists => Set<Specialist>();
-        public DbSet<Schedule> Schedules => Set<Schedule>();
+        public DbSet<User> Users => Set<User>();
         public DbSet<Appointment> Appointments => Set<Appointment>();
         public DbSet<ConsultationNote> ConsultationNotes => Set<ConsultationNote>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Specialities)
+                .WithMany(s => s.Specialists);
 
             modelBuilder.Entity<Appointment>()
                 .HasOne(a => a.Note)
@@ -25,52 +28,81 @@ namespace DAL.Data.Database
 
             modelBuilder.Entity<Appointment>()
                 .HasOne(a => a.Client)
-                .WithMany(c => c.Appointments)
+                .WithMany(u => u.AppointmentsAsClient)
                 .HasForeignKey(a => a.ClientId);
 
             modelBuilder.Entity<Appointment>()
                 .HasOne(a => a.Specialist)
-                .WithMany(s => s.Appointments)
+                .WithMany(u => u.AppointmentsAsSpecialist)
                 .HasForeignKey(a => a.SpecialistId);
 
-            modelBuilder.Entity<Schedule>()
-                .HasOne(s => s.Specialist)
-                .WithMany(sp => sp.Schedules)
-                .HasForeignKey(s => s.SpecialistId);
-
-            modelBuilder.Entity<Client>().HasData(
-                new Client { Id = 1, FullName = "Іван Іванов", Email = "ivan@example.com", Phone = "1234567890", DateOfBirth = new DateTime(1990, 5, 12, 0, 0, 0, 0, DateTimeKind.Utc) },
-                new Client { Id = 2, FullName = "Марія Коваль", Email = "maria@example.com", Phone = "0987654321", DateOfBirth = new DateTime(1995, 8, 22, 0, 0, 0, 0, DateTimeKind.Utc) },
-                new Client { Id = 3, FullName = "Оксана Петренко", Email = "oksana@example.com", Phone = "0970011223", DateOfBirth = new DateTime(1988, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc) },
-                new Client { Id = 4, FullName = "Дмитро Савчук", Email = "dmytro@example.com", Phone = "0934567890", DateOfBirth = new DateTime(1992, 12, 17, 0, 0, 0, 0, DateTimeKind.Utc) }
+            modelBuilder.Entity<Speciality>().HasData(
+                new Speciality { Id = 1, Name = "Когнітивно-поведінкова терапія" },
+                new Speciality { Id = 2, Name = "Гештальт-терапія" },
+                new Speciality { Id = 3, Name = "Психоаналітична терапія" }
             );
 
-            modelBuilder.Entity<Specialist>().HasData(
-                new Specialist { Id = 1, FullName = "Олена Психолог", Email = "olena@theraflow.com", Specialty = "Когнітивно-поведінкова терапія" },
-                new Specialist { Id = 2, FullName = "Андрій Терапевт", Email = "andrii@theraflow.com", Specialty = "Гештальт-терапія" },
-                new Specialist { Id = 3, FullName = "Світлана Консультант", Email = "svitlana@theraflow.com", Specialty = "Психоаналітична терапія" }
-            );
+            //var hasher = new PasswordHasher<User>();
 
-            modelBuilder.Entity<Schedule>().HasData(
-                new Schedule { Id = 1, SpecialistId = 1, StartTime = new DateTime(2025, 4, 10, 10, 0, 0, DateTimeKind.Utc), EndTime = new DateTime(2025, 4, 10, 12, 0, 0, DateTimeKind.Utc) },
-                new Schedule { Id = 2, SpecialistId = 2, StartTime = new DateTime(2025, 4, 11, 14, 0, 0, DateTimeKind.Utc), EndTime = new DateTime(2025, 4, 11, 16, 0, 0, DateTimeKind.Utc) },
-                new Schedule { Id = 3, SpecialistId = 3, StartTime = new DateTime(2025, 4, 12, 9, 0, 0, DateTimeKind.Utc), EndTime = new DateTime(2025, 4, 12, 11, 0, 0, DateTimeKind.Utc) },
-                new Schedule { Id = 4, SpecialistId = 1, StartTime = new DateTime(2025, 4, 13, 13, 0, 0, DateTimeKind.Utc), EndTime = new DateTime(2025, 4, 13, 15, 0, 0, DateTimeKind.Utc) }
-            );
+            //var admin = new User
+            //{
+            //    Id = "admin1",
+            //    UserName = "admin@theraflow.com",
+            //    NormalizedUserName = "ADMIN@THERAFLOW.COM",
+            //    Email = "admin@theraflow.com",
+            //    NormalizedEmail = "ADMIN@THERAFLOW.COM",
+            //    EmailConfirmed = true,
+            //    FullName = "Admin User",
+            //    UserType = (int)UserType.Admin,
+            //    SecurityStamp = Guid.NewGuid().ToString(),
+            //};
+            //admin.PasswordHash = hasher.HashPassword(admin, "Admin123!");
 
-            modelBuilder.Entity<Appointment>().HasData(
-                new Appointment { Id = 1, ClientId = 1, SpecialistId = 1, AppointmentDate = new DateTime(2025, 4, 10, 10, 30, 0, DateTimeKind.Utc) },
-                new Appointment { Id = 2, ClientId = 2, SpecialistId = 2, AppointmentDate = new DateTime(2025, 4, 11, 14, 30, 0, DateTimeKind.Utc) },
-                new Appointment { Id = 3, ClientId = 3, SpecialistId = 3, AppointmentDate = new DateTime(2025, 4, 12, 9, 30, 0, DateTimeKind.Utc) },
-                new Appointment { Id = 4, ClientId = 4, SpecialistId = 1, AppointmentDate = new DateTime(2025, 4, 13, 13, 45, 0, DateTimeKind.Utc) }
-            );
+            //var client1 = new User
+            //{
+            //    Id = "client1",
+            //    UserName = "ivan@example.com",
+            //    NormalizedUserName = "IVAN@EXAMPLE.COM",
+            //    Email = "ivan@example.com",
+            //    NormalizedEmail = "IVAN@EXAMPLE.COM",
+            //    EmailConfirmed = true,
+            //    FullName = "Іван Іванов",
+            //    DateOfBirth = new DateTime(1990, 5, 12, 0, 0, 0, DateTimeKind.Utc),
+            //    UserType = (int)UserType.Client,
+            //    SecurityStamp = Guid.NewGuid().ToString(),
+            //};
+            //client1.PasswordHash = hasher.HashPassword(client1, "Client123!");
 
-            modelBuilder.Entity<ConsultationNote>().HasData(
-                new ConsultationNote { Id = 1, AppointmentId = 1, Notes = "Обговорили тривожність та техніки заземлення." },
-                new ConsultationNote { Id = 2, AppointmentId = 2, Notes = "Перший сеанс. Уточнено цілі терапії." },
-                new ConsultationNote { Id = 3, AppointmentId = 3, Notes = "Проведено глибоке опитування минулих травматичних подій." },
-                new ConsultationNote { Id = 4, AppointmentId = 4, Notes = "Обговорено тривалість та очікування від терапії." }
-            );
+            //var client2 = new User
+            //{
+            //    Id = "client2",
+            //    UserName = "maria@example.com",
+            //    NormalizedUserName = "MARIA@EXAMPLE.COM",
+            //    Email = "maria@example.com",
+            //    NormalizedEmail = "MARIA@EXAMPLE.COM",
+            //    EmailConfirmed = true,
+            //    FullName = "Марія Коваль",
+            //    DateOfBirth = new DateTime(1995, 8, 22, 0, 0, 0, DateTimeKind.Utc),
+            //    UserType = (int)UserType.Client,
+            //    SecurityStamp = Guid.NewGuid().ToString(),
+            //};
+            //client2.PasswordHash = hasher.HashPassword(client2, "Client123!");
+
+            //var specialist = new User
+            //{
+            //    Id = "spec1",
+            //    UserName = "olena@theraflow.com",
+            //    NormalizedUserName = "OLENA@THERAFLOW.COM",
+            //    Email = "olena@theraflow.com",
+            //    NormalizedEmail = "OLENA@THERAFLOW.COM",
+            //    EmailConfirmed = true,
+            //    FullName = "Олена Психолог",
+            //    UserType = (int)UserType.Specialist,
+            //    SecurityStamp = Guid.NewGuid().ToString(),
+            //};
+            //specialist.PasswordHash = hasher.HashPassword(specialist, "Specialist123!");
+
+            //modelBuilder.Entity<User>().HasData(admin, client1, client2, specialist);
         }
     }
 }
