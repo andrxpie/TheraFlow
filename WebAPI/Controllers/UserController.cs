@@ -22,23 +22,51 @@ namespace TheraFlow_WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserDto>> GetUser(int id)
+        public async Task<ActionResult<UserDto>> GetUser(string id)
         {
             var user = await _userService.GetUserByIdAsync(id);
             return user == null ? NotFound() : Ok(user);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> PostClient([FromForm] AddUserDto user)
+        [HttpPost("admin")]
+        public async Task<IActionResult> PostAdminUser([FromForm] RegisterAdminDto user)
         {
             try
             {
-                await _userService.AddUserAsync(user);
+                await _userService.RegisterAdminAsync(user);
                 return Ok();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error adding user", ex);
+                throw new Exception("Error adding admin", ex);
+            }
+        }
+
+        [HttpPost("client")]
+        public async Task<IActionResult> PostClientUser([FromForm] RegisterDefaultUserDto user)
+        {
+            try
+            {
+                await _userService.RegisterClientAsync(user);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding client", ex);
+            }
+        }
+
+        [HttpPost("specialist")]
+        public async Task<IActionResult> PostSpecialistUser([FromForm] RegisterDefaultUserDto user)
+        {
+            try
+            {
+                await _userService.RegisterSpecialistAsync(user);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding specialist", ex);
             }
         }
 
@@ -57,12 +85,47 @@ namespace TheraFlow_WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteClient(int id)
+        public async Task<IActionResult> DeleteClient(string id)
         {
             var user = await _userService.GetUserByIdAsync(id);
             if (user == null) return NotFound();
             await _userService.DeleteUserAsync(id);
             return NoContent();
+        }
+
+        [HttpPost("login-via-email")]
+        public async Task<IActionResult> LoginViaEmail([FromBody] LoginViaEmailDto model)
+        {
+            try
+            {
+                var loginResponse = await _userService.LoginViaEmailAsync(model);
+                return Ok(loginResponse);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error logging in via email", ex);
+            }
+        }
+
+        [HttpPost("login-via-username")]
+        public async Task<IActionResult> LoginViaUserName([FromBody] LoginViaUserNameDto model)
+        {
+            try
+            {
+                var loginResponse = await _userService.LoginViaUserNameAsync(model);
+                return Ok(loginResponse);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error logging in via username", ex);
+            }
+        }
+
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout(LogoutDto model)
+        {
+            await _userService.Logout(model.RefreshToken);
+            return Ok();
         }
     }
 }

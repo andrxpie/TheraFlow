@@ -21,6 +21,7 @@ namespace BLL
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAppointmentsService, AppointmentsService>();
             services.AddScoped<IConsultationNotesService, ConsultationNotesService>();
+            services.AddScoped<IJwtService, JwtService>();
         }
     }
 }

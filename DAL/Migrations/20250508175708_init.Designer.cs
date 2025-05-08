@@ -3,6 +3,7 @@ using System;
 using DAL.Data.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(TheraFlowDbContext))]
-    partial class TheraFlowDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250508175708_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,6 +117,23 @@ namespace DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Speciality");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Когнітивно-поведінкова терапія"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Гештальт-терапія"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Психоаналітична терапія"
+                        });
                 });
 
             modelBuilder.Entity("BLL.Entities.User", b =>
@@ -188,6 +208,80 @@ namespace DAL.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "admin",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e98574f2-4b0d-4941-b928-478c9939f620",
+                            Email = "admin@theraflow.com",
+                            EmailConfirmed = true,
+                            FullName = "Admin User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@THERAFLOW.COM",
+                            NormalizedUserName = "ADMIN@THERAFLOW.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAECbluuqoFGkzU2jkBa9rEknC3B49fwPIk6jGgrxkayiQzy1G51tvODZVdbTB2QurBw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "UBZYFMAF4E3FBYZONVK4AZTWGNCOZAVH",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@theraflow.com",
+                            UserType = 0
+                        },
+                        new
+                        {
+                            Id = "7ac90941-f53c-4db8-8037-22bfbde07420",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "647252ac-fdf6-4eb9-bdfe-b0f715be8a8a",
+                            Email = "client1@theraflow.com",
+                            EmailConfirmed = true,
+                            FullName = "Андрій Грицюк",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "CLIENT1@THERAFLOW.COM",
+                            NormalizedUserName = "CLIENT1",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHhOW4zPVgfP7MWbDlvGM3QP9sPap6jFpVhyz+tjWFljAFIgBTih/sD+sQ1A5FF5ng==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "BB4CUDIKFZ54QHRE2DDYK7RSSWTWH5X6",
+                            TwoFactorEnabled = false,
+                            UserName = "client1",
+                            UserType = 1
+                        },
+                        new
+                        {
+                            Id = "1fc01305-15c9-484e-b8eb-75b1ca83d94f",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "9de5eab4-8887-42e9-9d21-716d2b384502",
+                            Email = "client2@theraflow.com",
+                            EmailConfirmed = true,
+                            FullName = "Анна Александрук",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "CLIENT2@THERAFLOW.COM",
+                            NormalizedUserName = "CLIENT2",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFVMo2lJ6IrfNnP2oIdMARmSq5uiJQsc6BRc/rY71zr7kCmG4+Sbndo3SQkexVxjyQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "CR5I7PVTS2EO3GHPWOGISX76X2MYU3QI",
+                            TwoFactorEnabled = false,
+                            UserName = "client2",
+                            UserType = 1
+                        },
+                        new
+                        {
+                            Id = "2193f1c9-5021-4229-9108-95372e604b93",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ccce5689-d181-496c-8363-832fc353b6f5",
+                            Email = "specialst1@theraflow.com",
+                            EmailConfirmed = true,
+                            FullName = "Єлизавета Опанасець",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SPECIALST1@THERAFLOW.COM",
+                            NormalizedUserName = "SPECIALIST1",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIx/cnQyQ3gOibzJsLixd+RO+HrnTFkgBLX+C3a5gIOBWwOqIZ6NoxgO6jsOhSULlQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "Y7OOUJA5OOD45G5NOYXKBBENF7IGEM3I",
+                            TwoFactorEnabled = false,
+                            UserName = "specialist1",
+                            UserType = 2
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -17,5 +17,6 @@ namespace BLL.Entities
         public ICollection<Appointment>? AppointmentsAsClient { get; set; }
         public ICollection<Appointment>? AppointmentsAsSpecialist { get; set; }
         public ICollection<Speciality>? Specialities { get; set; }
+        public ICollection<RefreshToken>? RefreshTokens { get; set; }
     }
 }

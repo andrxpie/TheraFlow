@@ -9,7 +9,8 @@ namespace BLL.Profiles
         public ApplicationProfile()
         {
             CreateMap<User, UserDto>().ReverseMap();
-            CreateMap<User, AddUserDto>().ReverseMap();
+            CreateMap<User, RegisterAdminDto>().ReverseMap();
+            CreateMap<User, RegisterDefaultUserDto>().ReverseMap();
             CreateMap<Speciality, SpecialityDto>().ReverseMap();
             CreateMap<AppointmentDto, Appointment>().ReverseMap();
             CreateMap<ConsultationNoteDto, ConsultationNote>().ReverseMap();
